@@ -29,3 +29,5 @@ Build
 swift build -Xlinker -rpath -Xlinker /usr/local/Cellar/libtensorflow/1.4.0/lib
 ```
 
+## Example
+More details about [TensorFlow + Swift + MNIST here.](https://www.octadero.com/2017/11/11/hello-mnist/)
