@@ -5,7 +5,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
  
- https://github.com/Octadero/Examples/01_MNIST/blob/master/LICENSE
+ https://github.com/Octadero/Examples/02_MNIST/blob/master/LICENSE
  
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,6 +13,12 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
+/*
+ IT IS NOT CORRECT WAY TO CALC ACCURACY ON TRAIN DATA
+ BUT THE MAIN GOAL OF THAT EXAMPLE IS VISUALIZATION
+ SO RIGHT WAY OF ACCURACY IS GOAL FOR OTHER EXAMPLE
+ DO NOT DO IN THAT WAY
+*/
 
 import Foundation
 import CAPI
@@ -28,7 +34,8 @@ public enum NetworkError: Error {
 
 public class Network {
     var dataset: MNISTDataset?
-    
+    var fileWriter: FileWriter?
+
     public init() {
         loadDataset { (error) in
             if let error = error {
@@ -82,7 +89,8 @@ public class Network {
     /// Main build graph function.
     func buildGraph() throws -> Scope {
         let scope = Scope()
-        
+        let summary = Summary(scope: scope)
+
         //MARK: Input sub scope
         let inputScope = scope.subScope(namespace: "input")
         let x = try inputScope.placeholder(operationName: "x-input", dtype: Float.self, shape: Shape.dimensions(value: [-1, 784]))
@@ -128,10 +136,67 @@ public class Network {
         let correctPrediction = try scope.equal(operationName: "Equal", x: firstArgMax, y: secondArgMax)
         let cast = try scope.cast(operationName: "Cast", x: correctPrediction, srcT: Bool.self, dstT: Float.self)
         let reductionIndicesAccuracy = try scope.addConst(tensor: Tensor.init(dimensions: [1], values: [Int(0)]), as: "reductionIndicesAccuracyConst").defaultOutput
-        let /*accuracy*/ _ = try scope.mean(operationName: "Accuracy", input: cast, reductionIndices: reductionIndicesAccuracy, keepDims: false, tidx: Int32.self)
-        // end Accuracy
+        let accuracy = try scope.mean(operationName: "Accuracy", input: cast, reductionIndices: reductionIndicesAccuracy, keepDims: false, tidx: Int32.self)
         
+        // Visualization
+        try summary.histogram(output: gradientsOutputs[0], key: "GradientDescentW")
+        try summary.histogram(output: gradientsOutputs[1], key: "GradientDescentB")
+
+        try summary.histogram(output: bias.output, key: "bias")
+        try summary.histogram(output: weights.output, key: "weights")
+        try summary.scalar(output: accuracy, key: "scalar-accuracy")
+        try summary.scalar(output: cross_entropy, key: "scalar-loss")
+        
+        
+        let flattenConst = try scope.addConst(values: [Int64(7840)], dimensions: [1], as: "flattenShapeConst")
+        
+        let imagesFlattenTensor = try scope.reshape(operationName: "FlattenReshape",
+                                                    tensor: weights.variable,
+                                                    shape: flattenConst.defaultOutput,
+                                                    tshape: Int64.self)
+        
+        try extractImage(from: imagesFlattenTensor, scope: scope, summary: summary, atIndex: 0)
+        try extractImage(from: imagesFlattenTensor, scope: scope, summary: summary, atIndex: 1)
+        try extractImage(from: imagesFlattenTensor, scope: scope, summary: summary, atIndex: 2)
+        try extractImage(from: imagesFlattenTensor, scope: scope, summary: summary, atIndex: 3)
+        try extractImage(from: imagesFlattenTensor, scope: scope, summary: summary, atIndex: 4)
+        try extractImage(from: imagesFlattenTensor, scope: scope, summary: summary, atIndex: 5)
+        try extractImage(from: imagesFlattenTensor, scope: scope, summary: summary, atIndex: 6)
+        try extractImage(from: imagesFlattenTensor, scope: scope, summary: summary, atIndex: 7)
+        try extractImage(from: imagesFlattenTensor, scope: scope, summary: summary, atIndex: 8)
+        try extractImage(from: imagesFlattenTensor, scope: scope, summary: summary, atIndex: 9)
+        
+        
+        let _ = try summary.merged(identifier: "simple")
+        
+        // create writer
+        try createFileWriter(graph: scope.graph)
+
         return scope
+    }
+    
+    /// Convert 784 weights per 10 classes to seperet image
+    /// doing stride slicing.
+    func extractImage(`from` imagesFlattenTensor: Output, scope: Scope, summary: Summary, atIndex index: Int) throws {
+        let extractedImage0 = try scope.stridedSlice(operationName: "StridedImage-\(String(index))",
+                                                     input: imagesFlattenTensor,
+                                                     begin: try scope.addConst(values: [Int(index)], dimensions: [1], as: "Begin-\(String(index))").defaultOutput,
+                                                     end: try scope.addConst(values: [Int(28 * 28 * 10)], dimensions: [1], as: "End-\(String(index))").defaultOutput,
+                                                     strides: try scope.addConst(values: [Int(10)], dimensions: [1], as: "Strides-\(String(index))").defaultOutput,
+                                                     index: Int.self,
+                                                     beginMask: 0,
+                                                     endMask: 0,
+                                                     ellipsisMask: 0,
+                                                     newAxisMask: 0,
+                                                     shrinkAxisMask: 0)
+        
+        let shapeImageTensorConst = try scope.addConst(values: Array<Int64>([1, 28, 28, 1]), dimensions: [4], as: "shapeImageTensorConst-\(String(index))")
+        let imagesTensor = try scope.reshape(operationName: "Reshape-\(String(index))",
+                                             tensor: extractedImage0,
+                                             shape: shapeImageTensorConst.defaultOutput,
+                                             tshape: Int64.self)
+        
+        try summary.images(name: "Image-\(String(index))", output: imagesTensor, maxImages: 255, badColor: Summary.BadColor.default)
     }
     
     func learn(scope: Scope) throws {
@@ -153,6 +218,10 @@ public class Network {
         guard let images = dataset.files(for: .image(stride: .train)).first as? MNISTImagesFile else { throw NetworkError.datasetNotReady }
         guard let labels = dataset.files(for: .label(stride: .train)).first as? MNISTLabelsFile else { throw NetworkError.datasetNotReady }
         
+        
+        guard let accuracy = try scope.graph.operation(by: "Accuracy")?.defaultOutput else { throw NetworkError.operationNotFound(name:  "Accuracy") }
+        guard let mergedSummary = try scope.graph.operation(by: "MergeSummary-simple")?.defaultOutput else { throw NetworkError.operationNotFound(name:  "MergeSummary-simple") }
+
         print("Load dataset ...")
         let batch = 2000
         let steps = 5000
@@ -169,30 +238,44 @@ public class Network {
         let yTensorInput = try Tensor(dimensions: [batch, 10], values: ys)
         var lossValueResult: Float = Float(Int.max)
         for index in 0..<steps {
-            
+            // IT IS NOT CORRECT WAY TO CALC ACCURACY ON TRAIN DATA
+            // BUT THE MAIN GOAL OF THAT EXAMPLE IS VISUALIZATION
+            // SO RIGHT WAY OF ACCURACY IS GOAL FOR OTHER EXAMPLE
+            // DO NOT DO IN THAT WAY
             let resultOutput = try session.run(inputs: [x, y],
                                                values: [xTensorInput, yTensorInput],
-                                               outputs: [loss, applyGradW, applyGradB],
+                                               outputs: [loss, applyGradW, applyGradB, mergedSummary, accuracy],
                                                targetOperations: [])
             
             if index % 100 == 0 {
                 let lossTensor = resultOutput[0]
-                let gradWTensor = resultOutput[1]
-                let gradBTensor = resultOutput[2]
-                let wValues: [Float] = try gradWTensor.pullCollection()
-                let bValues: [Float] = try gradBTensor.pullCollection()
+                let accuracyTensor = resultOutput[4]
+                
                 let lossValues: [Float] = try lossTensor.pullCollection()
                 guard let lossValue = lossValues.first else { continue }
-                print("\(index) loss: ", lossValue)
-                lossValueResult = lossValue
-                print("w max: \(wValues.max()!) min: \(wValues.min()!) b max: \(bValues.max()!) min: \(bValues.min()!)")
+
+                let accuracyValues: [Float] = try accuracyTensor.pullCollection()
+                guard let accuracyValue = accuracyValues.first else { continue }
+
                 
+                print("\(index) loss: \(lossValue) accuracy: \(accuracyValue)")
+                lossValueResult = lossValue
+
+                let summary = resultOutput[3]
+                try fileWriter?.addSummary(tensor: summary, step: Int64(index))
             }
         }
         
         if lossValueResult > 0.2 {
             throw NetworkError.other(message: "Accuracy value not reached.")
         }
+    }
+
+    func createFileWriter(graph: Graph) throws {
+        guard let writerURL = URL(string: "/tmp/example/") else {
+            throw NetworkError.other(message: "Can't compute folder url.")
+        }
+        fileWriter = try FileWriter(folder: writerURL, identifier: "iMac", graph: graph)
     }
     
     func loadDataset(callback: @escaping (_ error: Error?) -> Void) {
