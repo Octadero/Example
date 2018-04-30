@@ -25,9 +25,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		CD5EBF162093768F00A9D823 /* libswiftTensorFlow.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswiftTensorFlow.a; path = "../../../../Library/Developer/Toolchains/swift-tensorflow-DEVELOPMENT-2018-04-26-a.xctoolchain/usr/lib/swift_static/macosx/libswiftTensorFlow.a"; sourceTree = "<group>"; };
-		CD5EBF182093773400A9D823 /* libtensorflow_framework.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtensorflow_framework.so; path = "../../../../Library/Developer/Toolchains/swift-tensorflow-DEVELOPMENT-2018-04-26-a.xctoolchain/usr/lib/swift/macosx/libtensorflow_framework.so"; sourceTree = "<group>"; };
-		CD5EBF192093773400A9D823 /* libtensorflow.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtensorflow.so; path = "../../../../Library/Developer/Toolchains/swift-tensorflow-DEVELOPMENT-2018-04-26-a.xctoolchain/usr/lib/swift/macosx/libtensorflow.so"; sourceTree = "<group>"; };
+		CD5EBF162093768F00A9D823 /* libswiftTensorFlow.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswiftTensorFlow.a; path = "/Library/Developer/Toolchains/swift-latest/usr/lib/swift_static/macosx/libswiftTensorFlow.a"; sourceTree = "<group>"; };
+		CD5EBF182093773400A9D823 /* libtensorflow_framework.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtensorflow_framework.so; path = "/Library/Developer/Toolchains/swift-latest/usr/lib/swift/macosx/libtensorflow_framework.so"; sourceTree = "<group>"; };
+		CD5EBF192093773400A9D823 /* libtensorflow.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtensorflow.so; path = "/Library/Developer/Toolchains/swift-latest/usr/lib/swift/macosx/libtensorflow.so"; sourceTree = "<group>"; };
 		CDE5177B20931ED70024FED0 /* TensotFlowTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TensotFlowTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDE5177E20931ED70024FED0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
