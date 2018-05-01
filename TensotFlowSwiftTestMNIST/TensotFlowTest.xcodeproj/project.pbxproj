@@ -1,0 +1,316 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CD5EBF1A2093773400A9D823 /* libtensorflow_framework.so in Frameworks */ = {isa = PBXBuildFile; fileRef = CD5EBF182093773400A9D823 /* libtensorflow_framework.so */; };
+		CD5EBF1B2093773400A9D823 /* libtensorflow.so in Frameworks */ = {isa = PBXBuildFile; fileRef = CD5EBF192093773400A9D823 /* libtensorflow.so */; };
+		CDE5177F20931ED70024FED0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE5177E20931ED70024FED0 /* main.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CDE5177920931ED70024FED0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CD5EBF162093768F00A9D823 /* libswiftTensorFlow.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswiftTensorFlow.a; path = "/Library/Developer/Toolchains/swift-latest/usr/lib/swift_static/macosx/libswiftTensorFlow.a"; sourceTree = "<group>"; };
+		CD5EBF182093773400A9D823 /* libtensorflow_framework.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtensorflow_framework.so; path = "/Library/Developer/Toolchains/swift-latest/usr/lib/swift/macosx/libtensorflow_framework.so"; sourceTree = "<group>"; };
+		CD5EBF192093773400A9D823 /* libtensorflow.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtensorflow.so; path = "/Library/Developer/Toolchains/swift-latest/usr/lib/swift/macosx/libtensorflow.so"; sourceTree = "<group>"; };
+		CDE5177B20931ED70024FED0 /* TensotFlowTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TensotFlowTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDE5177E20931ED70024FED0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CDE5177820931ED70024FED0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD5EBF1A2093773400A9D823 /* libtensorflow_framework.so in Frameworks */,
+				CD5EBF1B2093773400A9D823 /* libtensorflow.so in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CD5EBF152093768F00A9D823 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CD5EBF182093773400A9D823 /* libtensorflow_framework.so */,
+				CD5EBF192093773400A9D823 /* libtensorflow.so */,
+				CD5EBF162093768F00A9D823 /* libswiftTensorFlow.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CDE5177220931ED70024FED0 = {
+			isa = PBXGroup;
+			children = (
+				CDE5177D20931ED70024FED0 /* TensotFlowTest */,
+				CDE5177C20931ED70024FED0 /* Products */,
+				CD5EBF152093768F00A9D823 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		CDE5177C20931ED70024FED0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CDE5177B20931ED70024FED0 /* TensotFlowTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CDE5177D20931ED70024FED0 /* TensotFlowTest */ = {
+			isa = PBXGroup;
+			children = (
+				CDE5177E20931ED70024FED0 /* main.swift */,
+			);
+			path = TensotFlowTest;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CDE5177A20931ED70024FED0 /* TensotFlowTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDE5178220931ED70024FED0 /* Build configuration list for PBXNativeTarget "TensotFlowTest" */;
+			buildPhases = (
+				CDE5177720931ED70024FED0 /* Sources */,
+				CDE5177820931ED70024FED0 /* Frameworks */,
+				CDE5177920931ED70024FED0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TensotFlowTest;
+			productName = TensotFlowTest;
+			productReference = CDE5177B20931ED70024FED0 /* TensotFlowTest */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CDE5177320931ED70024FED0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = Octadero;
+				TargetAttributes = {
+					CDE5177A20931ED70024FED0 = {
+						CreatedOnToolsVersion = 9.3;
+					};
+				};
+			};
+			buildConfigurationList = CDE5177620931ED70024FED0 /* Build configuration list for PBXProject "TensotFlowTest" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CDE5177220931ED70024FED0;
+			productRefGroup = CDE5177C20931ED70024FED0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CDE5177A20931ED70024FED0 /* TensotFlowTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CDE5177720931ED70024FED0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDE5177F20931ED70024FED0 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CDE5178020931ED70024FED0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "/Library/Developer/Toolchains/swift-latest/usr/lib/swift/macosx/";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-gnone";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CDE5178120931ED70024FED0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "/Library/Developer/Toolchains/swift-latest/usr/lib/swift/macosx/";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "-gnone";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Release;
+		};
+		CDE5178320931ED70024FED0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		CDE5178420931ED70024FED0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CDE5177620931ED70024FED0 /* Build configuration list for PBXProject "TensotFlowTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDE5178020931ED70024FED0 /* Debug */,
+				CDE5178120931ED70024FED0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CDE5178220931ED70024FED0 /* Build configuration list for PBXNativeTarget "TensotFlowTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDE5178320931ED70024FED0 /* Debug */,
+				CDE5178420931ED70024FED0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CDE5177320931ED70024FED0 /* Project object */;
+}
